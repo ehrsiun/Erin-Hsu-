@@ -243,7 +243,7 @@ def build():
     m += P(310, 17017, 545, "t-24l", "This also meant I could bring the workmark motion vision to life!")
     m += VID("gotgt-wordmark-motion", 310, 17137, 1009, 1039, "GoTgt wordmark motion",
              inner="position:absolute;left:-418px;top:0;width:1728px;height:1038px;max-width:none")
-    m += DOODLE("doodle-frown.svg", 1250, 15247, 44, 37)
+    m += DOODLE("doodle-frown.svg", 1176, 15530, 44, 37)
     m += DOODLE("doodle-smile.svg", 1229, 16166, 44, 29)
     m += RULE(18297)
 
