@@ -47,7 +47,8 @@ def SVG(name, x, y, w, h, alt=""):
 
 
 def FACE(kind, x, y, w, h):
-    return f'<div class="doodle" data-face="{kind}" style="{at(x, y, w, h)}"></div>\n'
+    # case-study doodles are the light lime (#DDF396) in Figma
+    return f'<div class="doodle" data-face="{kind}" data-color="#DDF396" style="{at(x, y, w, h)}"></div>\n'
 
 
 def DOODLE(name, x, y, w, h):
@@ -142,7 +143,7 @@ def build():
         m += IMG(f"{I}pitch-{n}.jpg", x, y, 431.5, 242.7, alt="Shared Solitude pitch slide", border=True)
     m += HL(776, 5642, 161, 22, r=38.6)
     m += P(310, 5619, 893, "over ink", "Class vote... Tied for 1st!",
-           extra="font-family:var(--serif);font-style:italic;font-weight:400;font-size:32px;line-height:44px;")
+           extra="font-family:var(--serif);font-style:italic;font-weight:400;font-size:32px;line-height:44px;text-align:center;")
     m += FACE("smile", 1074, 5328, 43, 28)
     m += RULE(5743)
 

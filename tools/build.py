@@ -1,6 +1,7 @@
 """Generates the static pages in ../site from the Figma measurements.
 All numbers are Figma pixels on the 1512-wide MacBook Pro 14" frames."""
 import os
+import json
 from common import head, nav, foot, media
 
 SITE = os.path.join(os.path.dirname(__file__), "..")
@@ -9,7 +10,30 @@ I = "/assets/img/"
 S = "/assets/svg/"
 
 
+FH = json.load(open(os.path.join(os.path.dirname(__file__), "fh.json")))
+
+
+def tag_figma_heights(html):
+    """Add data-fh="<Figma box height>" to each multi-line text so site.js can match Figma's line breaks."""
+    import re
+    for key, h in FH.items():
+        k = key.replace("&", "&amp;").strip()
+        i = html.find(">" + k, html.find("<body"))
+        while i != -1:
+            j = html.rfind("<", 0, i)
+            tag = html[j:i]
+            if tag.startswith("<span"):            # text starts with a bold span: tag its parent instead
+                i = j; j = html.rfind("<", 0, j)
+                tag = html[j:i]
+            if not tag.startswith("</") and "data-fh" not in tag:
+                html = html[:i] + f' data-fh="{h}"' + html[i:]
+                break
+            i = html.find(">" + k, i + 1)
+    return html
+
+
 def write(path, html):
+    html = tag_figma_heights(html)
     depth = path.count("/")
     pre = "../" * depth
     html = html.replace('"/assets/', '"' + pre + 'assets/').replace("'/assets/", "'" + pre + "assets/")
@@ -69,7 +93,7 @@ home += """<div class="hl" data-sweep="load" style="left:300px;top:137px;width:2
       <button data-mode="frown" aria-label="Frowny stamp" style="left:150px;top:408px;width:41.8px;height:35.2px" data-face="frown"></button>
       <button data-mode="ball" aria-label="Normal cursor" class="ball-opt" style="left:218px;top:408px;width:33px;height:33px"></button>
     </div>
-    <nav class="t-nav side-nav reveal" aria-label="More" style="position:absolute;left:0;top:min(919px, calc(var(--vhd) - 60px));width:396px;height:20px">
+    <nav class="t-nav side-nav reveal" aria-label="More" style="position:absolute;left:0;top:calc(var(--vhd) - 63px);width:396px;height:20px">
       <a href="/about/" style="position:absolute;left:80px">About</a>
       <a href="/play/" style="position:absolute;left:195px">Play</a>
       <a href="/resume/" style="position:absolute;left:310px">Resume</a>

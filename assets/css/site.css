@@ -148,7 +148,7 @@ em, .it { font-style: italic; }
 .toc a.on { color: var(--ink); }
 .toc a:hover, .side-nav a:hover, footer a:hover { color: var(--deep); }
 .side-nav a, footer a { transition: color .15s ease; }
-.to-top.raised { bottom: calc(103px * var(--z)); }
+.to-top.raised { bottom: calc(87px * var(--z)); } /* sits just above the Home bottom nav */
 .link { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: transparent; transition: text-decoration-color .15s; }
 .link:hover { text-decoration-color: currentColor; }
 .back img { transition: transform .2s; }

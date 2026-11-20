@@ -54,7 +54,31 @@
   window.__faces = FACE;
 
   // fill any [data-face] placeholders (doodles, picker)
-  $$("[data-face]").forEach((el) => { el.innerHTML = FACE[el.dataset.face].svg; });
+  $$("[data-face]").forEach((el) => {
+    let svg = FACE[el.dataset.face].svg;
+    if (el.dataset.color) svg = svg.split("#B1D43A").join(el.dataset.color);
+    el.innerHTML = svg;
+  });
+
+  // ------------------------------------------------------------------ match Figma line breaks
+  // Each multi-line text carries its Figma box height (data-fh). Browsers measure type a hair
+  // differently from Figma, so a line can break one word early or late. Nudge the box width a few
+  // px (never more than 24) until the text takes the same number of lines as in Figma.
+  function fitLines() {
+    $$("[data-fh]").forEach((el) => {
+      const target = +el.dataset.fh;
+      const base = el.__w || (el.__w = parseFloat(getComputedStyle(el).width));
+      if (!base) return;
+      let d = 0;
+      el.style.width = base + "px";
+      const lh = parseFloat(getComputedStyle(el).lineHeight) || 30;
+      while (el.offsetHeight > target + lh / 2 && d < 24) { d += 2; el.style.width = base + d + "px"; }
+      while (el.offsetHeight < target - lh / 2 && d > -24) { d -= 2; el.style.width = base + d + "px"; }
+    });
+  }
+  fitLines();
+  document.fonts && document.fonts.ready.then(fitLines);
+  addEventListener("load", fitLines);
 
   // ------------------------------------------------------------------ nav dot (slides from last page)
   const nav = $(".nav");
