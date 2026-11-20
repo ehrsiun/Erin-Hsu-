@@ -102,10 +102,10 @@ def build():
     m += VID("gotgt-wordmark-motion", 310, 155, 1009, 618, "GoTgt wordmark animation")
     m += P(310, 813, 638, "t-title ink", "GoTgt", tag="h1")
     m += P(310, 857, 638, "t-sub ink", "Designing spontaneous connection within busy routines")
-    m += P(1001, 813, 200, "t-20 ink", "Lead Designer")
-    m += P(1001, 838, 200, "t-20l", "Jan-May 2026")
+    m += P(1116, 813, 200, "t-20 ink", "Lead Designer")
+    m += P(1116, 838, 200, "t-20l", "Jan-May 2026")
     m += (f'<a href="https://go-tgt.vercel.app" target="_blank" rel="noopener" class="t-20l link" '
-          f'style="{at(1001, 873)}color:var(--deep);white-space:nowrap">Prototype Link</a>\n')
+          f'style="{at(1116, 873)}color:var(--deep);white-space:nowrap">Prototype Link</a>\n')
     m += f'<div data-top-after style="{at(310, 813, 891, 85)}pointer-events:none"></div>\n'
     m += RULE(978, 1009)  # spans the full hero width, as in Figma
 
