@@ -9,7 +9,7 @@ I = "/assets/img/cs/"
 S = "/assets/svg/"
 G = "/assets/gif/"
 
-PAGE_H = 19130  # Figma frame is 19567; shortened after the Reflections body went from 24px to 16px
+PAGE_H = 19147  # Figma frame is 19567; shortened after the Reflections body went from 24px to 16px
 
 
 # Nov 20 Figma update: everything below the hero moved 116px right (content column 310 -> 426)
