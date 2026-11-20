@@ -140,7 +140,7 @@ def build():
     m += P(390, 4384, 698, "t-24 ink", "A product that would make it so easy to hang out that it is a net positive even when busy")
     m += DOODLE("bigarrow.svg", 326, 4146, 57, 265)
     m += DOODLE("doodle-frown.svg", 670, 4329, 44, 37)
-    m += DOODLE("doodle-smile.svg", 655, 4418, 44, 29)
+    m += DOODLE("doodle-smile.svg", 655, 4428, 44, 29)
     m += RULE(4524)
 
     # ---------------- 1st Pitch
