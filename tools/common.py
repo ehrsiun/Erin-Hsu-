@@ -44,7 +44,7 @@ UP_ARROW = ('<svg viewBox="0 0 30 42" fill="none" aria-hidden="true"><path d="M1
 FOOTER = """<footer class="t-nav site-foot" style="position:absolute;left:1001px;top:{top}px">
   <a href="mailto:erinhsu@andrew.cmu.edu" style="position:absolute;left:0;white-space:nowrap">erinhsu@andrew.cmu.edu</a>
   <a href="https://www.linkedin.com/in/erinhsuu" target="_blank" rel="noopener" style="position:absolute;left:231px">linkedin</a>
-  <a href="#" data-todo="instagram url" target="_blank" rel="noopener" style="position:absolute;left:346px">instagram</a>
+  <a href="https://www.instagram.com/ernhsu/" target="_blank" rel="noopener" style="position:absolute;left:346px">instagram</a>
 </footer>
 """
 

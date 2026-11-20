@@ -84,6 +84,18 @@
     }));
   }
 
+  // ------------------------------------------------------------------ Home: bottom nav slides in once the top nav is gone
+  const reveal = $(".side-nav.reveal");
+  if (reveal && nav) {
+    const rs = new Spring(0, (p) => { reveal.style.opacity = Math.max(0, Math.min(1, p)); reveal.style.transform = `translateY(${(1 - p) * 24}px)`; });
+    let on = false;
+    const check = () => {
+      const want = nav.getBoundingClientRect().bottom <= 0;
+      if (want !== on) { on = want; reveal.classList.toggle("on", want); rs.set(want ? 1 : 0); }
+    };
+    addEventListener("scroll", check, { passive: true }); check();
+  }
+
   // ------------------------------------------------------------------ highlight sweeps
   const sweep = (el) => {
     const s = new Spring(0, (x) => (el.style.transform = `scaleX(${Math.max(0, x)})`), { k: 300, c: 24, m: 0.9 });

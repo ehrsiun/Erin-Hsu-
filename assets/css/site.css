@@ -84,7 +84,7 @@ em, .it { font-style: italic; }
 .over { position: relative; z-index: 1; }
 
 /* ---------- lime divider ---------- */
-.rule { height: 2px; background: var(--lime); }
+.rule { height: 2px; background: var(--lime); transform: translateY(-1px); } /* Figma lines are 0px tall with a 2px stroke centred on them */
 
 /* ---------- media ---------- */
 .media { position: relative; overflow: hidden; background: transparent; }
@@ -152,3 +152,7 @@ em, .it { font-style: italic; }
 .link { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: transparent; transition: text-decoration-color .15s; }
 .link:hover { text-decoration-color: currentColor; }
 .back img { transition: transform .2s; }
+
+/* Home: bottom-left nav appears once the top nav has scrolled away */
+.side-nav.reveal { opacity: 0; pointer-events: none; }
+.side-nav.reveal.on { pointer-events: auto; }

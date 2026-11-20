@@ -56,19 +56,20 @@ home += nav(0)
 home += """<div class="hl" data-sweep="load" style="left:300px;top:137px;width:210px;height:32px"></div>
 <h1 class="t-display over" data-top-after style="position:absolute;left:80px;top:96px;white-space:nowrap">Erin Hsu is hungry.</h1>
 
-<aside style="position:absolute;left:0;top:0;width:396px;height:2818px">
+<aside style="position:absolute;left:0;top:169px;width:396px;height:2649px">
+  <!-- Figma "Frame 45": scrolls up with the page, then stays put once it reaches the top -->
   <div class="side-fixed" style="position:sticky;top:0;height:var(--vhd)">
-    <div class="t-20l" style="position:absolute;left:80px;top:251px;width:308px">
+    <div class="t-20l" style="position:absolute;left:80px;top:82px;width:308px">
       <p>Hi! I’m a product designer studying Human-Computer Interaction, Design, &amp; Art @ Carnegie Mellon University.</p>
       <p style="margin-top:25px">I am interested in how design can translate complexity into delightful, human experiences.</p>
       <p style="margin-top:25px">But most of the time, I am just hungry...</p>
     </div>
     <div class="picker" role="group" aria-label="Pick a cursor: stamp a smiley, stamp a frown, or the normal cursor" style="position:absolute;left:0;top:0">
-      <button data-mode="smile" aria-label="Smiley stamp" style="left:81px;top:578px;width:41.5px;height:26.9px" data-face="smile"></button>
-      <button data-mode="frown" aria-label="Frowny stamp" style="left:150px;top:577px;width:41.8px;height:35.2px" data-face="frown"></button>
-      <button data-mode="ball" aria-label="Normal cursor" class="ball-opt" style="left:218px;top:577px;width:33px;height:33px"></button>
+      <button data-mode="smile" aria-label="Smiley stamp" style="left:81px;top:409px;width:41.5px;height:26.9px" data-face="smile"></button>
+      <button data-mode="frown" aria-label="Frowny stamp" style="left:150px;top:408px;width:41.8px;height:35.2px" data-face="frown"></button>
+      <button data-mode="ball" aria-label="Normal cursor" class="ball-opt" style="left:218px;top:408px;width:33px;height:33px"></button>
     </div>
-    <nav class="t-nav side-nav" aria-label="More" style="position:absolute;left:0;top:min(1088px, calc(var(--vhd) - 60px));width:396px;height:20px">
+    <nav class="t-nav side-nav reveal" aria-label="More" style="position:absolute;left:0;top:min(919px, calc(var(--vhd) - 60px));width:396px;height:20px">
       <a href="/about/" style="position:absolute;left:80px">About</a>
       <a href="/play/" style="position:absolute;left:195px">Play</a>
       <a href="/resume/" style="position:absolute;left:310px">Resume</a>
@@ -100,12 +101,12 @@ about += f"""
 
 <div style="position:absolute;left:741px;top:250px;width:576px">
   <h1 class="t-h2" data-top-after>So, why is Erin Hsu hungry?</h1>
-  <p class="t-24l ink" style="margin-top:20.34px">I am a designer who leads with gluttony &amp; greed. I see inefficiency &amp; incompetency in everything &amp; want it to be better. And then I think, <em>what is stopping me from making that happen?</em></p>
+  <p class="t-24l ink" style="position:absolute;left:0;top:64px;width:576px">I am a designer who leads with gluttony &amp; greed. I see inefficiency &amp; incompetency in everything &amp; want it to be better. And then I think, <em>what is stopping me from making that happen?</em></p>
 </div>
-<div class="t-20l" style="position:absolute;left:741px;top:531px;width:576px;display:flex;flex-direction:column;gap:30px">
-  <p>I use hunger as the primary way to describe myself because nothing else quite captures who I am so holistically. Yes, I am literally hungry in the sense that I am always eating &amp; cooking, but the very same ambition I have for food spans into the other areas of interest in my life, especially my work.</p>
-  <p>I get hungry where there is friction to resolve and systems to string together. Where there is potential for clarity, whimsy, or efficiency, there is me, hungry, greedy, gluttonous to make it happen.</p>
-  <p>Please note that while I am greedy, my core values stem from <span class="strong">empathy &amp; curiosity</span>. As much as I care about pushing beyond the limits, I care equally as much for how I get there. I believe it would be pointless to be hungry without also carefully making effort to understand &amp; connect with the peers, users, humans, involved.</p>
+<div class="t-20l about-copy" style="position:absolute;left:741px;top:531px;width:576px">
+  <p style="position:absolute;left:0;top:0">I use hunger as the primary way to describe myself because nothing else quite captures who I am so holistically. Yes, I am literally hungry in the sense that I am always eating &amp; cooking, but the very same ambition I have for food spans into the other areas of interest in my life, especially my work.</p>
+  <p style="position:absolute;left:0;top:155px">I get hungry where there is friction to resolve and systems to string together. Where there is potential for clarity, whimsy, or efficiency, there is me, hungry, greedy, gluttonous to make it happen.</p>
+  <p style="position:absolute;left:0;top:285px">Please note that while I am greedy, my core values stem from <span class="strong">empathy &amp; curiosity</span>. As much as I care about pushing beyond the limits, I care equally as much for how I get there. I believe it would be pointless to be hungry without also carefully making effort to understand &amp; connect with the peers, users, humans, involved.</p>
 </div>
 """
 about += foot(1104)
