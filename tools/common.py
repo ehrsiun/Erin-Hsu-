@@ -11,7 +11,8 @@ FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox
            "%3Ccircle cx='16' cy='16' r='14' fill='%23DDF396'/%3E%3C/svg%3E")
 
 
-def head(title, desc, height):
+def head(title, desc, height, shift=58):
+    # shift: pull the whole page up this many design px (halves the empty space above the first content)
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -27,7 +28,7 @@ def head(title, desc, height):
 <script>/* set zoom before first paint so nothing jumps */(function(){{var z=Math.min(1,innerWidth/1512);var r=document.documentElement.style;r.setProperty('--z',z);r.setProperty('--vhd',innerHeight/z+'px')}})();</script>
 </head>
 <body>
-<div class="page" style="height:{height}px">
+<div class="page" style="height:{height}px;margin-top:-{shift}px;--shift:{shift}px">
 """
 
 

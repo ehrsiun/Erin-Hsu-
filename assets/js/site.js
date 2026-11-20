@@ -187,7 +187,7 @@
     items.forEach((a, i) => a.addEventListener("click", (e) => {
       if (mode !== "ball") return;
       e.preventDefault();
-      const y = secs[i].getBoundingClientRect().top + scrollY - 155 * Z;
+      const y = secs[i].getBoundingClientRect().top + scrollY - (155 - (parseFloat(getComputedStyle(document.querySelector(".page")).getPropertyValue("--shift")) || 0)) * Z;
       scrollTo({ top: y, behavior: "smooth" });
     }));
   }
