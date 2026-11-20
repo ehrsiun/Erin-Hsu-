@@ -9,7 +9,7 @@ I = "/assets/img/cs/"
 S = "/assets/svg/"
 G = "/assets/gif/"
 
-PAGE_H = 19567
+PAGE_H = 19130  # Figma frame is 19567; shortened after the Reflections body went from 24px to 16px
 
 
 # Nov 20 Figma update: everything below the hero moved 116px right (content column 310 -> 426)
@@ -260,7 +260,7 @@ def build():
              "However, this project showed me that I am more than capable of applying my skills across disciplines as long as I actually sit down to do it. The entire design section of the project was done on my own, and it was probably the first time I felt actually connected to a product design work.",
              "And I am not yet done.",
              "From here, I have been thinking about taking it another step further to fully develop this app with the help of a engineering friend. I’m all about asking the “whys” and “why nots” and if this is genuinely a product that I believe in, which it has since the beginning, why shouldn’t it be a real solution that touches people’s lives?"]
-    m += (f'<div class="t-24l" style="{at(310, 18518, 545)}display:flex;flex-direction:column;gap:30px">'
+    m += (f'<div class="t-24l" style="{at(310, 18518, 545)}display:flex;flex-direction:column;gap:20px;font-size:16px;line-height:20px">'
           + "".join(f"<p>{t}</p>" for t in paras) + "</div>\n")
 
     h += f'<main>\n{m}</main>\n'
