@@ -12,7 +12,13 @@ G = "/assets/gif/"
 PAGE_H = 19567
 
 
+# Nov 20 Figma update: everything below the hero moved 116px right (content column 310 -> 426)
+DX = 116
+
+
 def at(x, y, w=None, h=None, extra=""):
+    if y > 978:
+        x = round(x + DX, 2)
     st = f"position:absolute;left:{x}px;top:{y}px;"
     if w is not None:
         st += f"width:{w}px;"
@@ -110,7 +116,7 @@ def build():
     for name, cap, y, cx in [("gotgt-post-activity", "3-Step post of an activity that was already part of your day", 1249, 884),
                              ("gotgt-friends-notified", "Friends in that activity circle get notified &amp; can choose to ignore or join in", 1960, 885),
                              ("gotgt-active-events", "See all the active events before the time runs out &amp; choose if you want to join", 2671, 885)]:
-        m += VID(name, 310, y, 545, 631, cap.replace("&amp;", "&"))
+        m += VID(name, 310, y, 545, 631, cap.replace("&amp;", "&"))  # Figma clips the 1049px video to a 545px frame at x426
         m += P(cx, y + 30, 316, "t-24-32", cap)
     m += RULE(3382)
 
@@ -237,14 +243,14 @@ def build():
     m += P(310, 14928, 545, "t-24l", "Drawing out individual frames to show to Claude")
     m += SVG("walk-frames.svg", 305, 15038, 902, 326, "Three hand-drawn walk cycle frames")
     m += P(310, 15443, 545, "t-24l", "Which initially did not work super well...")
-    m += f'<img src="{G}walk_preview.gif" alt="An early, wobbly walk cycle" loading="lazy" style="{at(474, 15513, 682, 606)}object-fit:cover">\n'
+    m += f'<img src="{G}walk_preview.gif" alt="An early, wobbly walk cycle" loading="lazy" style="{at(531 - DX, 15513, 682, 606)}object-fit:cover">\n'
     m += P(310, 16199, 545, "t-24l", "But then I iterated through it, working between Claude &amp; Figma Motion!")
-    m += f'<img src="{G}walk-cycle.gif" alt="The finished lil guy walk cycle" loading="lazy" style="{at(484.3, 16299, 660.3, 638)}object-fit:cover">\n'
+    m += f'<img src="{G}walk-cycle.gif" alt="The finished lil guy walk cycle" loading="lazy" style="{at(541 - DX, 16299, 660.3, 638)}object-fit:cover">\n'
     m += P(310, 17017, 545, "t-24l", "This also meant I could bring the workmark motion vision to life!")
-    m += VID("gotgt-wordmark-motion", 310, 17137, 1009, 1039, "GoTgt wordmark motion",
+    m += VID("gotgt-wordmark-motion", 310, 17137, 891, 1039, "GoTgt wordmark motion",
              inner="position:absolute;left:-418px;top:0;width:1728px;height:1038px;max-width:none")
-    m += DOODLE("doodle-frown.svg", 1176, 15530, 44, 37)
-    m += DOODLE("doodle-smile.svg", 1165, 16316, 44, 29)
+    m += DOODLE("doodle-frown.svg", 1233 - DX, 15530, 44, 37)
+    m += DOODLE("doodle-smile.svg", 1222 - DX, 16316, 44, 29)
     m += RULE(18297)
 
     # ---------------- Reflections
