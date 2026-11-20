@@ -139,8 +139,7 @@ def build():
 
     # ---------------- 1st Pitch
     m += SECTION("pitch-1", 4604, "1st Pitch", "Introducing... Shared Solitude")
-    for n, (x, y) in enumerate([(310, 4751), (772, 4751), (310, 5024), (772, 5024), (310, 5297), (772, 5297)], 1):
-        m += IMG(f"{I}pitch-{n}.jpg", x, y, 431.5, 242.7, alt="Shared Solitude pitch slide", border=True)
+    m += IMG(I + "pitch-slides.png", 310, 4751, 893, 789, alt="Shared Solitude pitch slides: research, problem, solution, storyboard, MVP, existing services")
     m += HL(776, 5642, 161, 22, r=38.6)
     m += P(310, 5619, 893, "over ink", "Class vote... Tied for 1st!",
            extra="font-family:var(--serif);font-style:italic;font-weight:400;font-size:32px;line-height:44px;text-align:center;")
@@ -150,9 +149,9 @@ def build():
     # ---------------- MVP Testing
     m += SECTION("mvp", 5823, "MVP Testing", "Validating the value of reducing barriers to shared routine activities")
     m += P(310, 6014, 426, "t-24-32", "Mapping out user journey ")
-    m += IMG(I + "mvp-journey.jpg", 310, 6056, 426, 327, alt="User journey map")
+    m += IMG(I + "mvp-journey.png", 310, 6056, 426, 327, alt="User journey map")
     m += P(766, 6014, 430, "t-24-32", "Finding key stakeholders")
-    m += IMG(I + "mvp-stakeholders.jpg", 766, 6056, 430, 327, alt="Stakeholder map")
+    m += IMG(I + "mvp-stakeholders.png", 766, 6056, 430, 327, alt="Stakeholder map")
     m += P(426, 6483, 655, "t-24-32", "Selected quote from over 20 interviews")
     m += HL(850, 6553, 163.3, 27) + HL(436.5, 6608, 200.5, 27) + HL(648.3, 6718, 212.9, 27)
     m += P(426, 6525, 654, "over",
@@ -160,16 +159,14 @@ def build():
            extra="font-family:var(--serif);font-style:italic;font-weight:400;font-size:40px;line-height:55px;color:#000;")
     m += P(426, 6785, 655, "t-24l", "CMU student, 20 y/o")
     m += P(310, 6895, 1009, "t-24-32", "Minimum Viable Product")
-    m += IMG(I + "mvp-1.jpg", 310, 6937, 430.5, 233.5, alt="MVP test messages")
-    m += IMG(I + "mvp-2.jpg", 310, 7194, 200.1, 233.5, alt="MVP test")
-    m += IMG(I + "mvp-3.jpg", 541.2, 7194, 199.3, 233.5, alt="MVP test")
+    m += IMG(I + "mvp.png", 310, 6937, 431, 491, alt="Friends meeting up during MVP testing")
     m += P(771, 6938, 431, "t-24l-32", "Testing the MVP to see if friends who have busy schedules would actually respond to a spontaneous system of doing mundane activities together")
     m += P(771, 7364, 431, "t-24-32 ink", "Found that almost every single 1-1 invitation of ~20 happened!")
     m += RULE(7508)
 
     # ---------------- 2nd Pitch
     m += SECTION("pitch-2", 7588, "2nd Pitch", "We gathered our findings &amp; pitched GoTgt to investors")
-    m += IMG(I + "pitch-day.jpg", 310, 7735, 545, 440, alt="The team pitching GoTgt")
+    m += IMG(I + "pitch-day.png", 310, 7735, 545, 440, alt="The team pitching GoTgt")
     m += P(885, 7735, 316, "t-24l-32", "Day of the presentation, we pitched with a prepared poster, slide deck, &amp; matching fits...")
     m += P(885, 8111, 316, "t-24-32 ink", "And we did not win, but tied for second place!")
     m += FACE("frown", 1109, 8108, 44, 37)

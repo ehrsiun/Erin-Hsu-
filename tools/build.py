@@ -4,7 +4,7 @@ import os
 import json
 from common import head, nav, foot, media
 
-SITE = os.path.join(os.path.dirname(__file__), "..")
+SITE = ".."
 V = "/assets/video/"
 I = "/assets/img/"
 S = "/assets/svg/"
@@ -23,7 +23,7 @@ def tag_figma_heights(html):
             j = html.rfind("<", 0, i)
             tag = html[j:i]
             if tag.startswith("<span"):            # text starts with a bold span: tag its parent instead
-                i = j; j = html.rfind("<", 0, j)
+                i = j - 1; j = html.rfind("<", 0, i)   # i now points at the parent's ">"
                 tag = html[j:i]
             if not tag.startswith("</") and "data-fh" not in tag:
                 html = html[:i] + f' data-fh="{h}"' + html[i:]
