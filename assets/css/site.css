@@ -156,3 +156,9 @@ em, .it { font-style: italic; }
 /* Home: bottom-left nav appears once the top nav has scrolled away */
 .side-nav.reveal { opacity: 0; pointer-events: none; }
 .side-nav.reveal.on { pointer-events: auto; }
+
+/* ---------- Play: press & hold to look ---------- */
+[data-hold] { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+[data-hold] img { pointer-events: none; -webkit-user-drag: none; }
+.hold-veil { position: fixed; inset: 0; background: rgba(255, 253, 245, 0.94); opacity: 0; pointer-events: none; z-index: 900; }
+.hold-big { position: fixed; z-index: 901; object-fit: contain; pointer-events: none; transform-origin: center; will-change: transform; }

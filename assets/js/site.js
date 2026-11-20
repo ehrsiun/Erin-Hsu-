@@ -222,7 +222,7 @@
     });
     cursorMode && cursorMode(m);
   }
-  let cursorMode = null;
+  let cursorMode = null, cursorHide = () => {}, holding = false;
 
   if (!touch) {
     // --- desktop cursor ---
@@ -245,12 +245,15 @@
     const fs = new Spring(0, (s) => (face.style.transform = `translate(-50%,-50%) scale(${Math.max(0, s)})`));
     let soon = false, labelTimer;
 
-    function setSoon(on) {
-      if (on === soon) return; soon = on;
+    // the ball stretches into a pill that says `text` (null = back to a ball)
+    function setSoon(text) {
+      text = text || false;
+      if (text === soon) return; soon = text;
       clearTimeout(labelTimer);
-      if (on) { bw.set(label.scrollWidth + 16); bh.set(BALL); labelTimer = setTimeout(() => tl.set(1), 90); }
+      if (text) { label.textContent = text; tl.set(0, { instant: true }); bw.set(label.scrollWidth + 16); bh.set(BALL); labelTimer = setTimeout(() => tl.set(1), 90); }
       else { tl.set(0, { instant: true }); bw.set(BALL); bh.set(BALL); }
     }
+    cursorHide = (hide) => bs.set(hide ? 0 : 1);
     cursorMode = (m) => {
       if (m === "ball") { fs.set(0); bs.set(1); }
       else {
@@ -265,7 +268,9 @@
       if (e.pointerType === "touch") return;
       cx = e.clientX; cy = e.clientY; place();
       cur.classList.add("on");
-      setSoon(mode === "ball" && !!e.target.closest?.(SOON));
+      setSoon(mode !== "ball" || holding ? null
+        : e.target.closest?.(SOON) ? "Coming soon!"
+        : e.target.closest?.("[data-hold]") ? "Hold to look" : null);
     }, { passive: true });
     document.documentElement.addEventListener("mouseleave", () => cur.classList.remove("on"));
     addEventListener("blur", () => cur.classList.remove("on"));
@@ -279,7 +284,7 @@
 
     // press feedback: ball squishes a little
     addEventListener("pointerdown", () => mode === "ball" && !soon && bs.set(0.82));
-    addEventListener("pointerup", () => mode === "ball" && bs.set(1));
+    addEventListener("pointerup", () => mode === "ball" && !holding && bs.set(1));
 
     pickerBtns.forEach((b) => b.addEventListener("click", () => setMode(b.dataset.mode)));
   } else {
@@ -325,6 +330,62 @@
     });
   }
   if (picker) setMode("ball");
+
+  // ------------------------------------------------------------------ Play: press & hold a piece to see it big
+  const holdables = $$("[data-hold]");
+  if (holdables.length) {
+    const veil = document.createElement("div");
+    veil.className = "hold-veil";
+    document.body.appendChild(veil);
+    let big = null, src = null, sp = null, timer = 0, startX = 0, startY = 0;
+
+    const open = (box) => {
+      const img = $("img", box), r = box.getBoundingClientRect();
+      const nw = img.naturalWidth || r.width, nh = img.naturalHeight || r.height;
+      const fit = Math.min((innerWidth * 0.88) / nw, (innerHeight * 0.88) / nh);
+      const w = nw * fit, h = nh * fit;
+      big = img.cloneNode(); big.removeAttribute("loading"); big.className = "hold-big";
+      big.style.cssText = `left:${(innerWidth - w) / 2}px;top:${(innerHeight - h) / 2}px;width:${w}px;height:${h}px`;
+      document.body.appendChild(big);
+      src = box; box.style.visibility = "hidden";
+      holding = true; cursorHide(true);
+      // spring from the thumbnail's spot to the middle of the screen
+      const sx = r.width / w, sy = r.height / h;
+      const dx = r.left + r.width / 2 - innerWidth / 2, dy = r.top + r.height / 2 - innerHeight / 2;
+      const el = big;
+      sp = new Spring(0, (p) => {
+        const q = Math.max(0, p);
+        el.style.transform = `translate(${dx * (1 - p)}px, ${dy * (1 - p)}px) scale(${sx + (1 - sx) * p}, ${sy + (1 - sy) * p})`;
+        el.style.clipPath = `inset(0 round ${8 * (1 - Math.min(1, q))}px)`;
+        veil.style.opacity = Math.min(1, q);
+      });
+      sp.set(1);
+    };
+    const close = () => {
+      clearTimeout(timer); timer = 0;
+      if (!big) return;
+      const el = big, box = src, s = sp;
+      big = null; src = null; sp = null; holding = false; cursorHide(false);
+      s.onUpdate = ((f) => (p) => { f(p); if (Math.abs(p) < 0.02 && s.target === 0) { el.remove(); box.style.visibility = ""; } })(s.onUpdate);
+      s.set(0);
+    };
+    holdables.forEach((box) => {
+      box.addEventListener("contextmenu", (e) => e.preventDefault());
+      box.addEventListener("pointerdown", (e) => {
+        if (mode !== "ball" || e.button > 0) return;
+        startX = e.clientX; startY = e.clientY;
+        clearTimeout(timer);
+        timer = setTimeout(() => open(box), 140);
+      });
+    });
+    addEventListener("pointermove", (e) => {
+      // a finger that moves before the hold kicks in is scrolling, not holding
+      if (timer && !big && Math.hypot(e.clientX - startX, e.clientY - startY) > 8) { clearTimeout(timer); timer = 0; }
+    }, { passive: true });
+    addEventListener("touchmove", (e) => { if (big) e.preventDefault(); }, { passive: false });
+    ["pointerup", "pointercancel", "blur"].forEach((t) => addEventListener(t, close));
+    addEventListener("keydown", (e) => e.key === "Escape" && close());
+  }
 
   // hover lift on picker options
   pickerBtns.forEach((b) => {

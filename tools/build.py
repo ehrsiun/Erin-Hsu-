@@ -151,7 +151,7 @@ for x, w, hs in cols:
     play += f'<div style="position:absolute;left:{x}px;top:246px;width:{w}px;display:flex;flex-direction:column;gap:30px">\n'
     for h in hs:
         n += 1
-        play += "  " + media(f"{I}play/{n:02d}.webp", w, h, alt="") + "\n"
+        play += "  " + media(f"{I}play/{n:02d}.webp", w, h, alt="").replace('class="media"', 'class="media" data-hold', 1) + "\n"
     play += "</div>\n"
 play += foot(1804)
 write("play/index.html", play)
