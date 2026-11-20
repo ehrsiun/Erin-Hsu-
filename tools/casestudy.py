@@ -143,7 +143,7 @@ def build():
     m += HL(776, 5642, 161, 22, r=38.6)
     m += P(310, 5619, 893, "over ink", "Class vote... Tied for 1st!",
            extra="font-family:var(--serif);font-style:italic;font-weight:400;font-size:32px;line-height:44px;text-align:center;")
-    m += DOODLE("doodle-smile.svg", 930, 5622, 44, 29)
+    m += DOODLE("doodle-smile.svg", 962, 5620, 44, 29)
     m += RULE(5743)
 
     # ---------------- MVP Testing
