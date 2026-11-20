@@ -1,0 +1,154 @@
+/* ==========================================================================
+   Erin Hsu — portfolio
+   Built 1:1 from the Figma frames (MacBook Pro 14", 1512px wide).
+   Everything inside .page is in Figma pixels; the page is zoomed to fit
+   narrower screens and centered on wider ones (see site.js → fit()).
+   ========================================================================== */
+
+:root {
+  --bg: #FFFDF5;
+  --ink: #322820;
+  --muted: #898676;
+  --lime: #DDF396;   /* main accent: highlights, ball, dividers, nav dot */
+  --green: #B1D43A;  /* doodles + stamps */
+  --deep: #84AC00;   /* thin things only: text links, nav hover */
+  --serif: "Source Serif 4", Georgia, serif;
+  --sans: "tenso", "Tenso", system-ui, sans-serif;
+  --z: 1;            /* page zoom, set by site.js */
+  --vhd: 982px;      /* viewport height in design px, set by site.js */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: var(--bg); -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+img, video, svg { display: block; }
+a { color: inherit; text-decoration: none; }
+button { all: unset; cursor: pointer; }
+
+/* ---------- page canvas ---------- */
+.page {
+  position: relative;
+  width: 1512px;
+  margin: 0 auto;
+  zoom: var(--z);
+}
+
+/* ---------- type ---------- */
+.t-display { font-family: var(--serif); font-weight: 400; font-size: 48px; line-height: 80px; letter-spacing: -0.01em; }
+.t-h2      { font-family: var(--serif); font-weight: 400; font-size: 40px; line-height: 43.66px; letter-spacing: -0.01em; }
+.t-title   { font-family: var(--serif); font-weight: 400; font-size: 32px; line-height: 43.66px; letter-spacing: -0.01em; }
+.t-sub     { font-family: var(--serif); font-weight: 300; font-style: italic; font-size: 24px; line-height: 32px; letter-spacing: -0.01em; }
+.t-label   { font-family: var(--serif); font-weight: 300; font-style: italic; font-size: 24px; line-height: 33px; }
+.t-nav     { font-family: var(--sans); font-weight: 400; font-size: 16px; line-height: 20px; color: var(--muted); }
+.t-20      { font-family: var(--sans); font-weight: 400; font-size: 20px; line-height: 25px; }
+.t-20l     { font-family: var(--sans); font-weight: 300; font-size: 20px; line-height: 25px; color: var(--muted); }
+.t-24      { font-family: var(--sans); font-weight: 400; font-size: 24px; line-height: 30px; }
+.t-24l     { font-family: var(--sans); font-weight: 300; font-size: 24px; line-height: 30px; color: var(--muted); }
+.t-24-32   { font-family: var(--sans); font-weight: 400; font-size: 24px; line-height: 32px; color: var(--muted); }
+.t-24l-32  { font-family: var(--sans); font-weight: 300; font-size: 24px; line-height: 32px; color: var(--muted); }
+.ink { color: var(--ink); }
+.muted { color: var(--muted); }
+.strong { font-weight: 400; color: var(--ink); }
+em, .it { font-style: italic; }
+
+/* ---------- top nav (Work · About · Play · Resume) ---------- */
+.nav { position: absolute; left: 1001px; top: 116px; width: 401px; height: 40px; }
+.nav a {
+  position: absolute; top: 20px;
+  transition: color .15s ease;
+}
+.nav a:hover { color: var(--deep); }
+.nav a[data-i="0"] { left: 0; }
+.nav a[data-i="1"] { left: 116px; }
+.nav a[data-i="2"] { left: 231px; }
+.nav a[data-i="3"] { left: 346px; }
+.nav .dot {
+  position: absolute; top: 0; left: 0;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--lime);
+  will-change: transform;
+}
+
+/* ---------- highlight bars ---------- */
+.hl {
+  position: absolute; background: var(--lime); border-radius: 100px;
+  z-index: 0; transform-origin: left center;
+}
+.over { position: relative; z-index: 1; }
+
+/* ---------- lime divider ---------- */
+.rule { height: 2px; background: var(--lime); }
+
+/* ---------- media ---------- */
+.media { position: relative; overflow: hidden; background: transparent; }
+.media > img, .media > video { width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- doodles ---------- */
+.doodle { position: absolute; pointer-events: none; }
+.doodle svg, .doodle img { width: 100%; height: 100%; }
+
+/* ---------- back to top (lives outside .page; scaled by --z) ---------- */
+.to-top {
+  position: fixed; z-index: 50;
+  left: calc(max(0px, (100vw - 1512px * var(--z)) / 2) + 65px * var(--z));
+  bottom: calc(43px * var(--z));
+  width: calc(29px * var(--z)); height: calc(42px * var(--z));
+  opacity: 0; transform: translateY(60px); pointer-events: none;
+}
+.to-top.show { pointer-events: auto; }
+.to-top svg { width: 100%; height: 100%; overflow: visible; }
+
+/* ---------- custom cursor + stamps ---------- */
+.has-cursor, .has-cursor * { cursor: none !important; }
+.cursor {
+  position: fixed; left: 0; top: 0; z-index: 9999; pointer-events: none;
+  will-change: transform; opacity: 0; transition: opacity .15s;
+}
+.cursor.on { opacity: 1; }
+.cursor .ball {
+  position: absolute; left: 0; top: 0;
+  width: 20px; height: 20px; border-radius: 100px; background: var(--lime);
+  transform: translate(-50%, -50%);
+  display: flex; align-items: center; justify-content: center; overflow: hidden; white-space: nowrap;
+}
+.cursor .ball span {
+  font-family: var(--sans); font-weight: 400; font-size: 12px; line-height: 1; letter-spacing: -0.01em; color: var(--ink);
+  opacity: 0; flex: none;
+}
+.cursor .face { position: absolute; left: 0; top: 0; transform: translate(-50%, -50%) scale(0); }
+.stamps { position: absolute; left: 0; top: 0; width: 0; height: 0; z-index: 9998; pointer-events: none; }
+.stamp { position: absolute; transform: translate(-50%, -50%) scale(0); }
+.pop {
+  position: fixed; z-index: 9999; pointer-events: none;
+  height: 24px; padding: 0 10px; border-radius: 100px; background: var(--lime);
+  display: flex; align-items: center; justify-content: center; white-space: nowrap;
+  font-family: var(--sans); font-size: 13px; letter-spacing: -0.01em; color: var(--ink);
+  transform: translate(-50%, -50%) scale(0);
+}
+
+/* ---------- stamp picker ---------- */
+.picker button { position: absolute; display: block; touch-action: none; -webkit-user-select: none; user-select: none; }
+.picker button svg { width: 100%; height: 100%; overflow: visible; }
+.picker .ball-opt { border-radius: 50%; background: var(--lime); }
+
+/* ---------- small screens: placeholder until the mobile layout is designed ---------- */
+@media (hover: none), (pointer: coarse) {
+  .cursor { display: none; }
+}
+
+/* ---------- case study contents ---------- */
+.toc a { transition: color .2s ease; }
+.toc a.on { color: var(--ink); }
+.toc a:hover, .side-nav a:hover, footer a:hover { color: var(--deep); }
+.side-nav a, footer a { transition: color .15s ease; }
+.to-top.raised { bottom: calc(103px * var(--z)); }
+.link { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: transparent; transition: text-decoration-color .15s; }
+.link:hover { text-decoration-color: currentColor; }
+.back img { transition: transform .2s; }
