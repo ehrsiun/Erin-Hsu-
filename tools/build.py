@@ -86,7 +86,7 @@ home += """<div class="hl" data-sweep="load" style="left:300px;top:137px;width:2
     <div class="t-20l" style="position:absolute;left:80px;top:82px;width:308px">
       <p>Hi! I’m a product designer studying Human-Computer Interaction, Design, &amp; Art @ Carnegie Mellon University.</p>
       <p style="margin-top:25px">I am interested in how design can translate complexity into delightful, human experiences.</p>
-      <p style="margin-top:25px">But most of the time, I am just hungry...</p>
+      <p style="margin-top:25px">But most of the time, I am just <a href="/about/" class="link" style="color:var(--deep)">hungry...</a></p>
     </div>
     <div class="picker" role="group" aria-label="Pick a cursor: stamp a smiley, stamp a frown, or the normal cursor" style="position:absolute;left:0;top:0">
       <button data-mode="smile" aria-label="Smiley stamp" style="left:81px;top:409px;width:41.5px;height:26.9px" data-face="smile"></button>
