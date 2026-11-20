@@ -46,6 +46,11 @@
   }
   fit();
   addEventListener("resize", fit);
+  // phones get their own single-column layout (.m) instead of the zoomed desktop canvas
+  const isM = () => innerWidth <= 700;
+  const SZ = () => (isM() ? 1 : Z); // stamp size factor
+  const shown = (el) => el && el.getClientRects().length > 0;
+  const firstShown = (sel) => $$(sel).find(shown) || null;
 
   // ------------------------------------------------------------------ faces (Erin's drawings)
   const SMILE = `<svg viewBox="0 0 102 66" fill="none"><path d="M96.5007 22.7695C96.5007 22.7695 95.7299 33.7359 90.1612 40.4224C84.7389 46.9332 80.6816 51.3314 69.6481 55.5333C44.9541 64.9378 22.0538 53.5685 10.347 41.5574C7.39131 38.5249 5.0013 33.0851 5.0013 33.0851" stroke="#B1D43A" stroke-width="10" stroke-linecap="round"/><path d="M29.1873 7C29.2003 8.16576 29.626 11.2044 30.2946 12.0939C30.4596 12.3133 30.852 12.384 30.8915 12.2354C30.9311 12.0867 30.6693 11.6503 30.3327 10.7695C29.996 9.88881 29.5925 8.57705 29.0012 7.14257" stroke="#B1D43A" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/><path d="M53.0012 8.99939C53.0012 9.01689 53.0012 9.03438 53.0012 9.54371C53.0012 10.053 53.0012 11.0537 53.3091 11.6673" stroke="#B1D43A" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
@@ -66,6 +71,7 @@
   // px (never more than 24) until the text takes the same number of lines as in Figma.
   function fitLines() {
     $$("[data-fh]").forEach((el) => {
+      if (!shown(el)) return;
       const target = +el.dataset.fh;
       const base = el.__w || (el.__w = parseFloat(getComputedStyle(el).width));
       if (!base) return;
@@ -134,6 +140,12 @@
     else if (io) io.observe(el); else el.__go();
   });
 
+  // mobile highlights: a lime marker sweeps in under the words when they scroll into view
+  $$(".mark").forEach((el) => {
+    if (el.dataset.sweep === "load") setTimeout(() => el.classList.add("on"), 300);
+    else if (io) { el.__go = () => el.classList.add("on"); io.observe(el); } else el.classList.add("on");
+  });
+
   // ------------------------------------------------------------------ videos: play only when visible
   const vids = $$("video");
   vids.forEach((v) => { v.muted = true; v.playsInline = true; });
@@ -147,7 +159,7 @@
   // ------------------------------------------------------------------ back to top
   const top = $(".to-top");
   if (top) {
-    const anchor = $("[data-top-after]");
+    const anchor = firstShown("[data-top-after]");
     const s = new Spring(0, (p) => {
       top.style.opacity = Math.min(1, Math.max(0, p));
       top.style.transform = `translateY(${(1 - p) * 60}px)`;
@@ -203,7 +215,7 @@
     const f = FACE[kind];
     const el = document.createElement("div");
     el.className = "stamp";
-    el.style.cssText = `left:${pageX}px;top:${pageY}px;width:${f.w * Z}px;height:${f.h * Z}px`;
+    el.style.cssText = `left:${pageX}px;top:${pageY}px;width:${f.w * SZ()}px;height:${f.h * SZ()}px`;
     el.innerHTML = f.svg;
     stamps.appendChild(el);
     const rot = -14;
@@ -211,7 +223,7 @@
     s.set(1);
   }
 
-  const picker = $(".picker");
+  const picker = firstShown(".picker");
   const pickerBtns = picker ? $$("button", picker) : [];
   const pickerSprings = pickerBtns.map((b) => new Spring(b.dataset.mode === "ball" ? 1 : 0.35, (o) => (b.style.opacity = o)));
   function setMode(m) {
@@ -314,7 +326,7 @@
         const kind = b.dataset.mode, f = FACE[kind];
         const ghost = document.createElement("div");
         ghost.className = "stamp";
-        ghost.style.cssText = `position:fixed;left:${e.clientX}px;top:${e.clientY}px;width:${f.w * Z * 1.25}px;height:${f.h * Z * 1.25}px;z-index:9999`;
+        ghost.style.cssText = `position:fixed;left:${e.clientX}px;top:${e.clientY}px;width:${f.w * SZ() * 1.25}px;height:${f.h * SZ() * 1.25}px;z-index:9999`;
         ghost.innerHTML = f.svg;
         document.body.appendChild(ghost);
         const gs = new Spring(0, (p) => (ghost.style.transform = `translate(-50%,-50%) scale(${Math.max(0, p)})`)); gs.set(1);

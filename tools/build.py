@@ -2,6 +2,7 @@
 All numbers are Figma pixels on the 1512-wide MacBook Pro 14" frames."""
 import os
 import json
+import mobile
 from common import head, nav, foot, media
 
 SITE = ".."
@@ -113,7 +114,7 @@ home += """
 </main>
 
 """
-home += foot(2818, raised=True)
+home += foot(2818, raised=True, mobile=mobile.home())
 write("index.html", home)
 
 # ============================================================== ABOUT
@@ -133,7 +134,7 @@ about += f"""
   <p style="position:absolute;left:0;top:285px">Please note that while I am greedy, my core values stem from <span class="strong">empathy &amp; curiosity</span>. As much as I care about pushing beyond the limits, I care equally as much for how I get there. I believe it would be pointless to be hungry without also carefully making effort to understand &amp; connect with the peers, users, humans, involved.</p>
 </div>
 """
-about += foot(1104)
+about += foot(1104, mobile=mobile.about())
 write("about/index.html", about)
 
 # ============================================================== PLAY
@@ -153,7 +154,7 @@ for x, w, hs in cols:
         n += 1
         play += "  " + media(f"{I}play/{n:02d}.webp", w, h, alt="").replace('class="media"', 'class="media" data-hold', 1) + "\n"
     play += "</div>\n"
-play += foot(1804)
+play += foot(1804, mobile=mobile.play())
 write("play/index.html", play)
 
 # ============================================================== RESUME
@@ -224,7 +225,7 @@ resume += f"""
   </section>
 </div>
 """
-resume += foot(1703)
+resume += foot(1703, mobile=mobile.resume())
 write("resume/index.html", resume)
 
 import casestudy  # noqa: E402  (GoTgt page lives in its own file)

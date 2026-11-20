@@ -162,3 +162,93 @@ em, .it { font-style: italic; }
 [data-hold] img { pointer-events: none; -webkit-user-drag: none; }
 .hold-veil { position: fixed; inset: 0; background: rgba(255, 253, 245, 0.94); opacity: 0; pointer-events: none; z-index: 900; }
 .hold-big { position: fixed; z-index: 901; object-fit: contain; pointer-events: none; transform-origin: center; will-change: transform; }
+
+/* ======================================================================
+   Phones (Figma "Mobile (390)"): one column, 24px margins.
+   The zoomed desktop canvas is hidden and .m is shown instead.
+   ====================================================================== */
+.m { display: none; }
+@media (max-width: 700px) {
+  .page { display: none !important; }
+  .m { display: block; padding: 20px 24px 40px; color: var(--ink); }
+  .to-top { left: 20px !important; bottom: 24px !important; width: 20px !important; height: 28px !important; }
+  .to-top.raised { bottom: 24px !important; }
+  .side-nav { display: none; }
+
+  .m-nav { display: flex; justify-content: space-between; font: 400 14px/18px var(--sans); }
+  .m-nav a { color: var(--muted); position: relative; padding-top: 11px; }
+  .m-nav a[aria-current] { color: var(--ink); }
+  .m-nav a[aria-current]::before { content: ""; position: absolute; top: 0; left: 50%; width: 7px; height: 7px; margin-left: -3.5px; border-radius: 50%; background: var(--lime); }
+
+  .m-title { font: 400 34px/44px var(--serif); letter-spacing: -0.01em; margin: 36px 0 16px; }
+  .mark { background: linear-gradient(var(--lime), var(--lime)) no-repeat 0 82% / 0% 52%; border-radius: 12px;
+          -webkit-box-decoration-break: clone; box-decoration-break: clone; transition: background-size .7s cubic-bezier(.2, .9, .25, 1.15); }
+  .mark.on { background-size: 100% 52%; }
+
+  .m-body p, .m-p { font: 300 16px/22px var(--sans); color: var(--muted); }
+  .m-body p + p { margin-top: 16px; }
+  .m-body-15 p { font-size: 15px; }
+  .ink { color: var(--ink); }
+
+  .m-picker { position: relative; display: flex; align-items: center; gap: 16px; margin: 20px 0 40px; }
+  .m-picker button { position: relative; flex: none; }
+  .m-hint { font: 300 13px/18px var(--sans); color: var(--muted); }
+
+  .m-media { position: relative; width: 100%; overflow: hidden; }
+  .m-media img, .m-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .m-card { display: block; }
+  .m-card-title { font: 400 22px/28px var(--serif); letter-spacing: -0.01em; margin-top: 12px; }
+  .m-card-sub { font: 300 italic 15px/20px var(--serif); margin-top: 4px; }
+  .m-meta { display: flex; gap: 10px; font: 300 14px/18px var(--sans); color: var(--muted); margin-top: 12px; }
+  .m-meta .ink { font-weight: 400; }
+  .m-meta + .m-meta { margin-top: 6px; }
+  .m-rule { height: 1.5px; background: var(--lime); margin: 20px 0 28px; }
+  .m-foot { display: flex; justify-content: space-between; gap: 16px; font: 400 13px/18px var(--sans); color: var(--muted); margin-top: 48px; }
+
+  .m-gap32 { height: 32px; }
+  .m-caption { font: 300 italic 15px/20px var(--serif); margin-top: 10px; }
+  .m-h1 { font: 400 26px/32px var(--serif); letter-spacing: -0.01em; margin: 32px 0 12px; }
+  .m-lead { font: 300 17px/24px var(--sans); margin-bottom: 24px; }
+
+  .m-play { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+  .m-play > div { display: flex; flex-direction: column; gap: 16px; }
+
+  .m-section { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
+  .m-label { font: 300 italic 18px/24px var(--serif); }
+  .m-entry-title { font: 400 17px/22px var(--sans); }
+  .m-entry-org { font: 400 15px/20px var(--sans); color: var(--muted); margin-top: 4px; }
+  .m-entry .m-meta { margin-top: 4px; }
+  .m-entry-desc { font: 300 15px/22px var(--sans); color: var(--muted); margin-top: 8px; }
+  .m-entry-desc + .m-entry-desc { margin-top: 4px; }
+
+  /* case study */
+  .m-back { display: inline-block; margin-bottom: 20px; }
+  .m-rule-sec { margin: 28px 0; }
+  .m-cs-sec > * + * { margin-top: 16px; }
+  .m-cs-sec .m-label { font-size: 16px; line-height: 22px; }
+  .m-cs-sec .m-statement { margin-top: 4px; font: 400 22px/28px var(--serif); letter-spacing: -0.01em; margin-bottom: 8px; }
+  .m-cap { margin-top: 10px !important; margin-bottom: 24px; }
+  .m-sub { color: var(--muted); font-weight: 400; }
+  .m-steps { list-style: none; counter-reset: s; display: flex; flex-direction: column; gap: 14px; }
+  .m-steps li { counter-increment: s; position: relative; padding-left: 36px; font: 300 16px/22px var(--sans); color: #5B5B5B; }
+  .m-steps li::before { content: counter(s); position: absolute; left: 0; top: -1px; width: 24px; height: 24px; border-radius: 50%; background: var(--lime); color: var(--ink); font: 400 13px/24px var(--sans); text-align: center; }
+  .m-spiral { display: flex; gap: 10px; align-items: flex-start; }
+  .m-spiral-svg { width: 35px; flex: none; margin-top: 9px; }
+  .m-spiral > div { display: flex; flex-direction: column; gap: 9px; }
+  .m-li { line-height: 22px; }
+  .m-vote { text-align: center; font: 400 italic 20px/28px var(--serif); margin-top: 20px !important; }
+  .m-doodle { display: inline-block; width: 30px; height: auto; margin-left: 8px; vertical-align: -2px; }
+  .m-quote { font: 400 italic 22px/30px var(--serif); color: #000; }
+  .m-hungry p { font: 400 24px/32px var(--serif); letter-spacing: -0.01em; }
+  .m-hungry p + p { margin-top: 16px; }
+  .m-curl { display: flex; justify-content: flex-start; padding-left: 40px; }
+  .m-curl img { width: 64px; height: auto; }
+  .m-ill { display: block; width: 100%; height: auto; }
+  .m-right { text-align: right; }
+  .m-nexa { font: 400 128px/1.2 nexa, sans-serif; color: var(--ink); margin-top: 0 !important; letter-spacing: -0.01em; }
+  .m-ramp { display: grid; grid-template-columns: 84px 1fr; align-items: baseline; row-gap: 8px; }
+  .m-ramp > span:nth-child(odd) { font: 400 12px/17px 'Open Sans', sans-serif; color: #6E6E6E; }
+  .m-swatches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px 12px; }
+  .m-swatches i { display: block; width: 72px; height: 72px; border-radius: 50%; }
+  .m-swatches span { display: block; margin-top: 8px; font: 400 12px/16px 'Open Sans', sans-serif; color: #6E6E6E; }
+}

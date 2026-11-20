@@ -9,7 +9,7 @@ I = "/assets/img/cs/"
 S = "/assets/svg/"
 G = "/assets/gif/"
 
-PAGE_H = 19147  # Figma frame is 19567; shortened after the Reflections body went from 24px to 16px
+PAGE_H = 19383  # Figma frame is 19567; shortened after the Reflections body went from 24px to 16px
 
 
 # Nov 20 Figma update: everything below the hero moved 116px right (content column 310 -> 426)
@@ -94,6 +94,11 @@ def build():
       <span class="toc-dot" aria-hidden="true" style="position:absolute;left:-24px;top:0;width:10px;height:10px;border-radius:50%;background:var(--lime)"></span>
       {toc}
     </nav>
+    <div class="picker" role="group" aria-label="Pick a cursor: stamp a smiley, stamp a frown, or the normal cursor" style="position:absolute;left:0;top:720px">
+      <button data-mode="smile" aria-label="Smiley stamp" style="left:81px;top:1px;width:41.5px;height:26.9px" data-face="smile"></button>
+      <button data-mode="frown" aria-label="Frowny stamp" style="left:150px;top:0;width:41.8px;height:35.2px" data-face="frown"></button>
+      <button data-mode="ball" aria-label="Normal cursor" class="ball-opt" style="left:218px;top:0;width:33px;height:33px"></button>
+    </div>
   </div>
 </aside>
 """
@@ -260,9 +265,10 @@ def build():
              "However, this project showed me that I am more than capable of applying my skills across disciplines as long as I actually sit down to do it. The entire design section of the project was done on my own, and it was probably the first time I felt actually connected to a product design work.",
              "And I am not yet done.",
              "From here, I have been thinking about taking it another step further to fully develop this app with the help of a engineering friend. I’m all about asking the “whys” and “why nots” and if this is genuinely a product that I believe in, which it has since the beginning, why shouldn’t it be a real solution that touches people’s lives?"]
-    m += (f'<div class="t-24l" style="{at(310, 18518, 545)}display:flex;flex-direction:column;gap:20px;font-size:16px;line-height:20px">'
+    m += (f'<div class="t-24l" style="{at(310, 18518, 545)}display:flex;flex-direction:column;gap:25px;font-size:20px;line-height:25px">'
           + "".join(f"<p>{t}</p>" for t in paras) + "</div>\n")
 
     h += f'<main>\n{m}</main>\n'
-    h += foot(PAGE_H)
+    import mobile
+    h += foot(PAGE_H, mobile=mobile.gotgt())
     return h

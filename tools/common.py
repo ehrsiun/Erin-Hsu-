@@ -50,12 +50,13 @@ FOOTER = """<footer class="t-nav site-foot" style="position:absolute;left:1001px
 """
 
 
-def foot(height, to_top=True, raised=False):
+def foot(height, to_top=True, raised=False, mobile=""):
     """Closes the page. The footer sits 52px above the page bottom, as on the Home frame (2766 of 2818)."""
     tt = (f'<button class="to-top{" raised" if raised else ""}" aria-label="Back to top">{UP_ARROW}</button>\n'
           if to_top else "")
+    m = f'<div class="m">\n{mobile}</div>\n' if mobile else ""
     return FOOTER.format(top=height - 52) + f"""</div>
-{tt}<script src="/assets/js/site.js" defer></script>
+{m}{tt}<script src="/assets/js/site.js" defer></script>
 </body>
 </html>
 """
