@@ -169,7 +169,7 @@ def build():
     m += IMG(I + "pitch-day.png", 310, 7735, 545, 440, alt="The team pitching GoTgt")
     m += P(885, 7735, 316, "t-24l-32", "Day of the presentation, we pitched with a prepared poster, slide deck, &amp; matching fits...")
     m += P(885, 8111, 316, "t-24-32 ink", "And we did not win, but tied for second place!")
-    m += DOODLE("doodle-frown.svg", 1077, 8140, 44, 37)
+    m += DOODLE("doodle-frown.svg", 1092, 8150, 44, 37)
     m += RULE(8255)
 
     # ---------------- still hungry
