@@ -61,8 +61,8 @@ def DOODLE(name, x, y, w, h):
     return f'<img class="doodle" src="{S}{name}" alt="" style="{at(x, y, w, h)}">\n'
 
 
-def RULE(y):
-    return f'<div class="rule" style="{at(310, y, 891)}"></div>\n'
+def RULE(y, w=891):
+    return f'<div class="rule" style="{at(310, y, w)}"></div>\n'
 
 
 def SECTION(id_, y, label, statement, hl=None):
@@ -107,7 +107,7 @@ def build():
     m += (f'<a href="https://go-tgt.vercel.app" target="_blank" rel="noopener" class="t-20l link" '
           f'style="{at(1001, 873)}color:var(--deep);white-space:nowrap">Prototype Link</a>\n')
     m += f'<div data-top-after style="{at(310, 813, 891, 85)}pointer-events:none"></div>\n'
-    m += RULE(978)
+    m += RULE(978, 1009)  # spans the full hero width, as in Figma
 
     # ---------------- Overview
     m += SECTION("overview", 1058, "Overview",
