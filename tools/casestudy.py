@@ -133,8 +133,8 @@ def build():
         m += P(390, 4134 + i * 50, 698, "t-24l", t, extra="white-space:nowrap;")
     m += P(390, 4384, 698, "t-24 ink", "A product that would make it so easy to hang out that it is a net positive even when busy")
     m += DOODLE("bigarrow.svg", 428, 4202, 56, 264)
-    m += FACE("frown", 794, 4383, 44, 37)
-    m += FACE("smile", 1173, 4473, 43, 28)
+    m += DOODLE("doodle-frown.svg", 794, 4383, 44, 37)
+    m += DOODLE("doodle-smile.svg", 1173, 4473, 44, 29)
     m += RULE(4524)
 
     # ---------------- 1st Pitch
@@ -143,7 +143,7 @@ def build():
     m += HL(776, 5642, 161, 22, r=38.6)
     m += P(310, 5619, 893, "over ink", "Class vote... Tied for 1st!",
            extra="font-family:var(--serif);font-style:italic;font-weight:400;font-size:32px;line-height:44px;text-align:center;")
-    m += FACE("smile", 1074, 5328, 43, 28)
+    m += DOODLE("doodle-smile.svg", 1074, 5328, 44, 29)
     m += RULE(5743)
 
     # ---------------- MVP Testing
@@ -169,7 +169,7 @@ def build():
     m += IMG(I + "pitch-day.png", 310, 7735, 545, 440, alt="The team pitching GoTgt")
     m += P(885, 7735, 316, "t-24l-32", "Day of the presentation, we pitched with a prepared poster, slide deck, &amp; matching fits...")
     m += P(885, 8111, 316, "t-24-32 ink", "And we did not win, but tied for second place!")
-    m += FACE("frown", 1109, 8108, 44, 37)
+    m += DOODLE("doodle-frown.svg", 1109, 8108, 44, 37)
     m += RULE(8255)
 
     # ---------------- still hungry
@@ -243,8 +243,8 @@ def build():
     m += P(310, 17017, 545, "t-24l", "This also meant I could bring the workmark motion vision to life!")
     m += VID("gotgt-wordmark-motion", 310, 17137, 1009, 1039, "GoTgt wordmark motion",
              inner="position:absolute;left:-418px;top:0;width:1728px;height:1038px;max-width:none")
-    m += FACE("frown", 1250, 15247, 44, 37)
-    m += FACE("smile", 1229, 16166, 43, 28)
+    m += DOODLE("doodle-frown.svg", 1250, 15247, 44, 37)
+    m += DOODLE("doodle-smile.svg", 1229, 16166, 44, 29)
     m += RULE(18297)
 
     # ---------------- Reflections
